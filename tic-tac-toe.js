@@ -17,4 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    document.querySelectorAll('#board div').forEach(square => {
+        square.addEventListener('mouseover', function() {
+            square.classList.add('hover');
+        });
+        square.addEventListener('mouseout', function() {
+            square.classList.remove('hover');
+        });
+    });
 });
