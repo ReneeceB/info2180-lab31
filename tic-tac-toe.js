@@ -7,17 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPlayer = 'X';
     const board = Array(9).fill(null);
 
-    squares.forEach((square, index) => {
-        square.addEventListener('click', function() {
-           
-                board[index] = currentPlayer;
-                square.textContent = currentPlayer;
-                square.classList.add(currentPlayer);
-                checkWinner();
-                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
-            };
-        
-    });
+
 
     function checkWinner() {
         const winningCombinations = [
@@ -42,5 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
         square.addEventListener('mouseout', function() {
             square.classList.remove('hover');
         });
+    });
+
+    document.querySelector('.btn').addEventListener('click', function() {
+        board.fill(null);
+        currentPlayer = 'X';
+        squares.forEach(square => {
+            square.textContent = '';
+            square.className = 'square';
+        });
+        document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
+        document.getElementById('status').classList.remove('you-won');
     });
 });
