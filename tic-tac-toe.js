@@ -7,7 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPlayer = 'X';
     const board = Array(9).fill(null);
 
-
+    squares.forEach((square, index) => {
+        square.addEventListener('click', function() {
+            if (!board[index] && !document.getElementById('status').classList.contains('you-won')) {
+                board[index] = currentPlayer;
+                square.textContent = currentPlayer;
+                square.classList.add(currentPlayer);
+                checkWinner();
+                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
+            }
+        });
+    });
 
     function checkWinner() {
         const winningCombinations = [
